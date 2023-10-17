@@ -1,0 +1,18 @@
+on:
+    pull_request:
+      branches: [ dev ]
+      types: [ closed ]
+jobs:
+    delete-s3:
+      name: Delete S3 bucket
+      runs-on: ubuntu-latest
+      steps:
+        - name: Delete Website Bucket
+          uses: danburtenshaw/s3-website-pr-action@v2
+          with:
+            bucket-prefix: "witt-front-"
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
