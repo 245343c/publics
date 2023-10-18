@@ -6,6 +6,8 @@ COPY . /app
 RUN yarn && \
     yarn build
 
+
+# Secouond stage started here
 # Stage 2: Nginx
 FROM nginx:stable
 
